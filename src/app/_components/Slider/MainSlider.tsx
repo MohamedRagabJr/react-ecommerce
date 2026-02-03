@@ -2,28 +2,29 @@
 "use client"
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import slideimage from "../../../../public/11.jpg"
-import slideimage2 from "../../../../public/22.jpg"
+
 
 
 
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import Image from 'next/image';
-export default function MainSlider() {
+export default function MainSlider({imglist ,slidesPerView}) {
   return (
     <>
       <Swiper
-        pagination={true} modules={[Pagination]}
+        pagination={{clickable: true}} 
+        slidesPerView={slidesPerView}
+        spaceBetween={0}
+        modules={[Pagination , Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>
-            <Image src={slideimage} alt="Slide 1" className='w-full object-contain' width={800} height={800} />
-        </SwiperSlide>
-        <SwiperSlide>
-            <Image src={slideimage2} alt="Slide 1" className='w-full object-cover'   width={800} height={800}/>
-        </SwiperSlide>
+        {imglist.map((src , index) => (
+            <SwiperSlide key={index}>
+                <Image src={src} alt="Slide 1" className='w-full object-cover' width={800} height={800} />
+            </SwiperSlide>
+        ))}
       </Swiper>
     </>
   )

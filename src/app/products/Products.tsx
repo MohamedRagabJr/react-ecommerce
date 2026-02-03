@@ -38,7 +38,7 @@ let res =  await getAllProducts()
               </CardDescription>
             </CardHeader>
             <CardFooter>
-              <Button variant="outline">Add To Cart</Button>
+              <Button variant="outline" className="text-white bg-green-600">Add To Cart</Button>
             </CardFooter>
           </Card>
           </Link>
