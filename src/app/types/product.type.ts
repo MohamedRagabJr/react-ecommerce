@@ -53,3 +53,4 @@ export interface Brand {
   slug: string
   image: string
 }
+
