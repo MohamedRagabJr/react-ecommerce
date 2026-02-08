@@ -7,7 +7,7 @@ export default async function CategorySlider() {
   return (
     <>
     <div className="container mx-auto py-8 category-slider">
-        <MainSlider imglist={dataImgs} slidesPerView={7} />
+        <MainSlider imglist={dataImgs} slidesPerView={7} width={400} height={250} />
     </div>
       
     </>
