@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
-export default function MainSlider({ imglist, slidesPerView, width, height }) {
+export default function MainSlider({ imglist, slidesPerView, width, height  }) {
   return (
     <>
       <Swiper
@@ -16,11 +16,10 @@ export default function MainSlider({ imglist, slidesPerView, width, height }) {
         className="mySwiper"
       >
         {imglist.map((src, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} >
             <Image
               src={src}
               alt="Slide 1"
-              className="w-full object-cover"
               width={width}
               height={height}
             />

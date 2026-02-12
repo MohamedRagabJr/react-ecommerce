@@ -16,8 +16,8 @@ export function Profile() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
-          <FaRegUserCircle/>
+        <Button variant="outline" className="bg-green-900 text-white">
+          <FaRegUserCircle />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

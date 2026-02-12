@@ -3,9 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ShoppingCart, Menu, X, Search } from "lucide-react"
-import { TiShoppingCart } from "react-icons/ti";
 import { Profile } from "./Profile";
-import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -17,14 +15,13 @@ const Navbar: React.FC = () => {
 
           {/* Logo */}
           <Link href="/" className="text-xl logo font-bold flex items-center text-gray-900">
-          <TiShoppingCart className="text-green-600"/>
-            MyStore
+          <span className="bg-green-900 h-9 w-9 mr-1 text-center main-slider content-center rounded-2xl text-white">R</span>
+            Store
           </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-6">
             <Link prefetch href="/" className="nav-link">Home</Link>
-            <Link prefetch href="/carts" className="nav-link">Carts</Link>
             <Link prefetch href="/products" className="nav-link">Products</Link>
             <Link prefetch href="/categories" className="nav-link">Categories</Link>
             <Link prefetch href="/brands" className="nav-link">Brands</Link>
@@ -46,8 +43,8 @@ const Navbar: React.FC = () => {
           {/* Cart */}
           <div className="flex gap-3 items-center">
            <Link href="/cart" className="relative ml-4">
-            <ShoppingCart size={22} />
-            <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+            <ShoppingCart className="text-green-900" size={22} />
+            <span className="absolute -top-2 -right-2 bg-green-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
               3
             </span>
           </Link>
