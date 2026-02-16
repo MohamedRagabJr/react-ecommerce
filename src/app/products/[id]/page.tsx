@@ -1,6 +1,7 @@
-import getProductDetails from "../../_components/api/getProductDetails"
+import getProductDetails from "../../api/getProductDetails"
 import { notFound } from "next/navigation"
 import Image from "next/image"
+import Breadcrumb from "../../_components/Breadcrumb";
 type Props = {
   params: Promise<{
     id: string
@@ -8,6 +9,7 @@ type Props = {
 }
 
 export default async function ProductPage({ params }: Props) {
+  const breadcrumbItems = [{ label: "Home", link: "/" }, { label: "Product Details" }];
   const { id } = await params  
   const data = await getProductDetails(id)
 
@@ -17,6 +19,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <>
+    <Breadcrumb items={breadcrumbItems}/>
     <div className="container mx-auto py-4">
       <div className="flex items-center">
           <div className="w-1/3">

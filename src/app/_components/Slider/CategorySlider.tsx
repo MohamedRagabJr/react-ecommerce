@@ -1,4 +1,4 @@
-import getCategories from "../api/getCategories"
+import getCategories from "../../api/getCategories"
 import MainSlider from "./MainSlider";
 
 export default async function CategorySlider() {

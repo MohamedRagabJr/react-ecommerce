@@ -1,4 +1,4 @@
-import getCategoryDetails from "../../_components/api/getCategoryDetails"
+import getCategoryDetails from "../../api/getCategoryDetails"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Breadcrumb from "../../_components/Breadcrumb";

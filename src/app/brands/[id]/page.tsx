@@ -1,4 +1,4 @@
-import getBrandDetails from "../../_components/api/getBrandDetails"
+import getBrandDetails from "../../api/getBrandDetails"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Breadcrumb from "../../_components/Breadcrumb";

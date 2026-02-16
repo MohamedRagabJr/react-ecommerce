@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link"
 import Breadcrumb from "../_components/Breadcrumb";
-import getCategories from "../_components/api/getCategories"
+import getCategories from "../api/getCategories"
 import Image from "next/image"
 export default async function Categories() {
   let res =  await getCategories()
