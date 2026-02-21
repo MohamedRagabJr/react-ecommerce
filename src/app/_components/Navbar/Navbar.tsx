@@ -4,9 +4,11 @@ import { useState } from "react"
 import Link from "next/link"
 import { ShoppingCart, Menu, X, Search } from "lucide-react"
 import { Profile } from "./Profile";
+import { useSession } from "next-auth/react"
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
+  const { data: session } = useSession()
 
   return (
     <nav className="w-full border-b bg-white sticky top-0 z-50">
@@ -42,20 +44,29 @@ const Navbar: React.FC = () => {
 
           {/* Cart */}
           <div className="flex gap-3 items-center">
-           <Link href="/cart" className="relative ml-4">
+           
+          
+          
+          {session ? (
+            <>
+            <Link href="/cart" className="relative ml-4">
             <ShoppingCart className="text-green-900" size={22} />
             <span className="absolute -top-2 -right-2 bg-green-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
               3
             </span>
           </Link>
-          
-          <Link href="/login" className="relative ml-4">
-            Login
-          </Link>
-          <Link href="/register" className="relative ml-4">
-            Register
-          </Link>
-          <Profile />
+            <Profile />
+            </>
+          ) : (
+            <>
+              <Link href="/login" className="relative ml-4">
+                Login
+              </Link>
+              <Link href="/register" className="relative ml-4">
+                Register
+              </Link>
+            </>
+          )}
           </div>
           
 

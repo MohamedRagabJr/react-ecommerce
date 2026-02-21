@@ -1,20 +1,15 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { toast } from "sonner"
 import { ShoppingCart } from "lucide-react"
+import {addItemToCart}  from "../api/addToCart"
 
-export default function AddtoCardbtn() {
+export default function AddToCartBtn({productId} : {productId:string}) {
 
-  const handleAddToCart = () => {
-    toast.success("Added to cart", {
-      description: "Item has been successfully added to your cart.",
-      action: {
-        label: "Undo",
-        onClick: () => toast.info("Item removed from cart"),
-      },
-    })
-  }
+ async function handleAddToCart() {
+  const data = await addItemToCart(productId)
+  console.log("data from add to cart" , data)
+ }
 
   return (
     <div className="flex items-center gap-2 w-full">

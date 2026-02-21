@@ -22,7 +22,7 @@ export default async function Brands() {
           <div className="flex flex-wrap py-4">
           
           {res?.map((brand: any) => (
-            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:1/5 p-2" key={brand._id}>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2" key={brand._id}>
               <Link href={`/brands/${brand._id}`}>
               <Card className="relative mx-auto w-full max-w-sm pt-0" >
                 <div className="absolute inset-0 " />

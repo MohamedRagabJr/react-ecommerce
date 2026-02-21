@@ -1,51 +1,54 @@
 import { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-export const nextAuthConfig : NextAuthOptions = {
-    providers: [
-        Credentials({
-            credentials: {
-                email: {},
-                password: {}
-            },
-            authorize :async function(Credentials){
-                const res = await fetch(`https://ecommerce.routemisr.com/api/v1/auth/signin` , {
-                method: "POST",
-                body: JSON.stringify(Credentials),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-                })
-                let finalRes = await res.json()
-                if (finalRes.message == "success"){
-                    return finalRes.user
-                }else{
-                    return null
-                }
-            }
+declare module "next-auth" {
+  interface User { realTokenFromBackend?: string }
+  interface Session { realTokenFromBackend?: string }
+}
+declare module "next-auth/jwt" {
+  interface JWT { realTokenFromBackend?: string }
+}
 
+export const nextAuthConfig: NextAuthOptions = {
+  secret: process.env.AUTH_SECRET,
+  session: {
+    strategy: "jwt"
+  },
+
+  providers: [
+    Credentials({
+      credentials: { email: {}, password: {} },
+      async authorize(credentials) {
+        const res = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signin", {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" },
         })
-    ],
-    // secret : process.env.AUTH_SECRET
 
-    pages: {
-        signIn: "/login",
-        signOut: "/register",
-        
-    },
-    callbacks: {
-        jwt(params) {
-            console.log("params" , params);
-            if(params.user){
-                params.token.realTokenFromBackend = params.userrealTokenFromBackend;
-            }
-            return params.token
-        },
-        session(params){
-            console.log("params" , params);
-            
-            return params.session
+        const finalRes = await res.json()
+
+        if (finalRes.message === "success") {
+          return { ...finalRes.user, realTokenFromBackend: finalRes.token } // ✅
         }
-    }
-    
+
+        return null
+      },
+    }),
+  ],
+
+  pages: { signIn: "/login" },
+
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.realTokenFromBackend = user.realTokenFromBackend // ✅
+      }
+      return token
+    },
+    session({ session, token }) {
+      session.realTokenFromBackend = token.realTokenFromBackend // ✅
+      return session
+    },
+  },
+  
 }

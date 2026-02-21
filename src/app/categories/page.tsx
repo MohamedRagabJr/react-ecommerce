@@ -22,7 +22,7 @@ export default async function Categories() {
           <div className="flex flex-wrap py-4">
           
           {res?.map((category: any) => (
-            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:1/5 p-2" key={category._id}>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2" key={category._id}>
               <Link href={`/categories/${category._id}`}>
               <Card className="relative mx-auto w-full max-w-sm pt-0" >
                 <div className="absolute inset-0 " />
