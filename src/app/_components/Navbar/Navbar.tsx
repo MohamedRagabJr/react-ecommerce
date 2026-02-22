@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Link from "next/link"
 import { ShoppingCart, Menu, X, Search } from "lucide-react"
 import { Profile } from "./Profile";
 import { useSession } from "next-auth/react"
+import { CartContext } from "../../_context/CartContext";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
   const { data: session } = useSession()
-
+  const { numOfCartItems } = useContext(CartContext)
   return (
     <nav className="w-full border-b bg-white sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -52,7 +53,7 @@ const Navbar: React.FC = () => {
             <Link href="/cart" className="relative ml-4">
             <ShoppingCart className="text-green-900" size={22} />
             <span className="absolute -top-2 -right-2 bg-green-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-              3
+              {numOfCartItems}
             </span>
           </Link>
             <Profile />

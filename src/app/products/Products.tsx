@@ -11,6 +11,7 @@ import Image from "next/image"
 import { FaRegHeart } from "react-icons/fa6"
 import { FaStar } from "react-icons/fa"
 import AddToCartBtn from "../_components/AddToCartBt"
+import AddToWishlistBtn from "../_components/AddToWishlist"
 
 interface Product {
   id: string
@@ -82,10 +83,7 @@ export default async function Products() {
 
             <CardFooter className="flex items-center gap-3">
               <AddToCartBtn productId={product.id} />
-              {/* ✅ Added sizing and button-like interaction to heart icon */}
-              <button className="text-green-900 hover:text-red-500 transition cursor-pointer">
-                <FaRegHeart size={20} />
-              </button>
+              <AddToWishlistBtn productId={product.id} />
             </CardFooter>
           </Card>
         </div>
