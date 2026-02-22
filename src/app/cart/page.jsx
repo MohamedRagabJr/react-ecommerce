@@ -4,7 +4,7 @@ import CartCard from "../../app/_components/CartCard";
 import OrderSummary from "../../app/_components/OrderSummary";
 import "./cart.css";
 import Breadcrumb from "../_components/Breadcrumb";
-
+const breadcrumbItems = [{ label: "Home", link: "/" }, { label: "cart" }];
 const INITIAL_ITEMS = [
   {
     id: 1,
