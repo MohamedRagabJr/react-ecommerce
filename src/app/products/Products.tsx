@@ -8,7 +8,6 @@ import {
 import Link from "next/link"
 import getAllProducts from "../api/getProducts"
 import Image from "next/image"
-import { FaRegHeart } from "react-icons/fa6"
 import { FaStar } from "react-icons/fa"
 import AddToCartBtn from "../_components/AddToCartBt"
 import AddToWishlistBtn from "../_components/AddToWishlist"

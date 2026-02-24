@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useContext } from "react";
 import { CartContext } from "../_context/CartContext";
 
 export default function OrderSummary() {
-  const { numOfCartItems , cartItems } = useContext(CartContext);
+  const { numOfCartItems, cartItems } = useContext(CartContext);
   console.log("Cart Items in OrderSummary:", cartItems);
   return (
     <>
@@ -28,11 +28,14 @@ export default function OrderSummary() {
           <p className="text-black">{cartItems.totalCartPrice} EGP</p>
         </div>
         <div className="btns">
-          <Button className="w-full mt-5 border rounded-xl py-3 h-auto text-black bg-white">Continue Shopping</Button>
-          <Button className="w-full h-auto py-3 rounded-xl mt-5">Checkout</Button>
+          <Button className="w-full mt-5 border rounded-xl py-3 h-auto text-black bg-white">
+            Continue Shopping
+          </Button>
+          <Button className="w-full h-auto py-3 rounded-xl mt-5">
+            Checkout
+          </Button>
         </div>
       </Card>
-      
     </>
-  )
+  );
 }
