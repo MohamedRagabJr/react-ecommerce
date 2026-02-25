@@ -13,7 +13,7 @@ export default function CartPage() {
           <CartCard />
         </div>
         <div className="w-1/3">
-          {/* <OrderSummary /> */}
+          <OrderSummary />
         </div>
       </div>
     </div>

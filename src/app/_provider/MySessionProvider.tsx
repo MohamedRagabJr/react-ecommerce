@@ -2,6 +2,8 @@
 
 import { SessionProvider } from "next-auth/react";
 import CartContextProvider from "../_context/CartContext";
+import WishlistContextProvider from "../_context/WishlistContext";
+
 
 export default function MySessionProvider({
   children,
@@ -11,8 +13,14 @@ export default function MySessionProvider({
   return (
     <>
       <SessionProvider>
-        <CartContextProvider>{children}</CartContextProvider>
-      </SessionProvider>
+      <CartContextProvider>
+        <WishlistContextProvider>
+
+          {children}
+
+        </WishlistContextProvider>
+      </CartContextProvider>
+    </SessionProvider>
     </>
   );
 }

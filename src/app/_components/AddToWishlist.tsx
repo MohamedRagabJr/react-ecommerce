@@ -2,47 +2,74 @@
 
 import { Button } from "@/components/ui/button";
 import { addItemToWishlist } from "../api/addToWishlist";
+import { removeItemFromWishlist } from "../wishlist/removeWishlist";
 import { toast } from "sonner";
-import { FaRegHeart } from "react-icons/fa6";
-import { FaHeart } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useContext } from "react";
+import { WishlistContext } from "../_context/WishlistContext";
 
-export default function AddToWishlistBtn({ productId }: { productId: string }) {
+export default function AddToWishlistBtn({ productId }) {
 
-  const [isWishlisted, setIsWishlisted] = useState(false);
-useEffect(()=>{
- // check if product in wishlist
-},[])
-  async function handleAddToWidhlist() {
+  const {
+    wishlistItems,
+    setWishlistItems
+  } = useContext(WishlistContext);
+
+
+  const isWishlisted = wishlistItems?.some(
+    (item) => item._id === productId
+  );
+
+
+  async function toggleWishlist() {
+
     try {
-      const data = await addItemToWishlist(productId);
 
-      console.log("Wishlist Response:", data);
+      if (isWishlisted) {
 
-      if (data.status === "success") {
-        setIsWishlisted(true);
+        const data = await removeItemFromWishlist(productId);
+
+        setWishlistItems(data.data);
+
+        toast.success("Removed");
+
       }
 
-      toast.success(data.message || "Item added to Wishlist!");
+      else {
 
-    } catch (error: any) {
+        const data = await addItemToWishlist(productId);
 
-      toast.error(
-        error.message || "Failed to add item to Wishlist. Please try again.",
-      );
+        setWishlistItems(data.data);
+
+        toast.success("Added");
+
+      }
 
     }
+
+    catch {
+
+      toast.error("Error");
+
+    }
+
   }
- 
+
 
   return (
-    <Button
-      onClick={handleAddToWidhlist}
-      className="text-green-900 hover:bg-green-900 hover:text-white bg-white max-w-7 transition cursor-pointer"
-    >
 
-      {isWishlisted ? <FaHeart size={30}/> : <FaRegHeart size={30} />}
+    <Button onClick={toggleWishlist}>
+
+      {isWishlisted
+
+        ? <FaHeart size={30} />
+
+        : <FaRegHeart size={30} />
+
+      }
 
     </Button>
+
   );
+
 }

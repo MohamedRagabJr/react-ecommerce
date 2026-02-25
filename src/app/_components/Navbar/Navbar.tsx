@@ -6,11 +6,14 @@ import { ShoppingCart, Menu, X, Search } from "lucide-react"
 import { Profile } from "./Profile";
 import { useSession } from "next-auth/react"
 import { CartContext } from "../../_context/CartContext";
+import { WishlistContext } from "../../_context/WishlistContext";
+import { FaRegHeart } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
   const { data: session } = useSession()
   const { numOfCartItems } = useContext(CartContext)
+  const { numOfWishlistItems } = useContext(WishlistContext);
   return (
     <nav className="w-full border-b bg-white sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -31,7 +34,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Search */}
-          <div className="hidden md:flex relative">
+          {/* <div className="hidden md:flex relative">
             <input
               type="text"
               placeholder="Search products..."
@@ -41,7 +44,7 @@ const Navbar: React.FC = () => {
               size={16}
               className="absolute left-3 top-2.5 text-gray-400"
             />
-          </div>
+          </div> */}
 
           {/* Cart */}
           <div className="flex gap-3 items-center">
@@ -54,6 +57,12 @@ const Navbar: React.FC = () => {
             <ShoppingCart className="text-green-900" size={22} />
             <span className="absolute -top-2 -right-2 bg-green-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
               {numOfCartItems}
+            </span>
+          </Link>
+          <Link href="/wishlist" className="relative ml-4">
+           <FaRegHeart className="text-green-900" size={22} />
+            <span className="absolute -top-2 -right-2 bg-green-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+              {numOfWishlistItems}
             </span>
           </Link>
             <Profile />
