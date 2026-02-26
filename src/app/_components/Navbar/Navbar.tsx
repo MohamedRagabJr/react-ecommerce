@@ -19,13 +19,11 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
 
-          {/* Logo */}
           <Link href="/" className="text-xl logo font-bold flex items-center text-gray-900">
           <span className="bg-green-900 h-9 w-9 mr-1 text-center main-slider content-center rounded-2xl text-white">R</span>
             Store
           </Link>
 
-          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-6">
             <Link prefetch href="/" className="nav-link">Home</Link>
             <Link prefetch href="/products" className="nav-link">Products</Link>

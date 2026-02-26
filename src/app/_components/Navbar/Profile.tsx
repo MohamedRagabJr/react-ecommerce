@@ -30,7 +30,7 @@ export function Profile() {
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Billing
+            Orders
           </DropdownMenuItem>
           <DropdownMenuItem>
             Settings

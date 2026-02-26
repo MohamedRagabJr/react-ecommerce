@@ -10,7 +10,7 @@ export  async function addItemToCart(productId: string) {
   // console.log("TOKEN:", token) 
 
   const { data } = await axios.post(
-    `https://ecommerce.routemisr.com/api/v1/cart` ,
+    `https://ecommerce.routemisr.com/api/v2/cart` ,
     { productId: productId },
     {
       headers: {

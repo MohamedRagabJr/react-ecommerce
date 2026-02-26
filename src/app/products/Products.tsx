@@ -6,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link"
-import getAllProducts from "../api/getProducts"
 import Image from "next/image"
 import { FaStar } from "react-icons/fa"
 import AddToCartBtn from "../_components/AddToCartBt"
@@ -22,12 +21,8 @@ interface Product {
   ratingsQuantity: number
   brand: { name: string }
 }
-
-export default async function Products() {
-  const res = await getAllProducts()
-
-  // ✅ Handle empty/failed fetch gracefully
-  if (!res || res.length === 0) {
+export default function Products({ products }: { products: Product[] }) {
+  if (!products || products.length === 0) {
     return (
       <div className="flex justify-center items-center py-20 text-gray-500">
         No products found.
@@ -36,11 +31,11 @@ export default async function Products() {
   }
 
   return (
-    <div className="container mx-auto">
+    <>
       <div className="flex flex-wrap py-4">
-        {res.map((product: Product) => (
+        {products.map((product: Product) => (
           <div
-            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 2xl:w-1/5 p-2"
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 2xl:w-1/4 p-2"
             key={product.id}
           >
             <Card className="relative mx-auto w-full max-w-sm pt-0">
@@ -49,7 +44,7 @@ export default async function Products() {
                   width={800}
                   height={550}
                   src={product.imageCover}
-                  alt={product.title} // ✅ meaningful alt text
+                  alt={product.title}
                   className="h-62.5 w-full object-contain rounded-xl"
                 />
                 <CardHeader>
@@ -89,6 +84,6 @@ export default async function Products() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   )
 }

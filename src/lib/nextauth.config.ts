@@ -28,7 +28,7 @@ export const nextAuthConfig: NextAuthOptions = {
         const finalRes = await res.json()
 
         if (finalRes.message === "success") {
-          return { ...finalRes.user, realTokenFromBackend: finalRes.token } // ✅
+          return { ...finalRes.user, realTokenFromBackend: finalRes.token } 
         }
 
         return null
@@ -41,12 +41,12 @@ export const nextAuthConfig: NextAuthOptions = {
   callbacks: {
     jwt({ token, user }) {
       if (user) {
-        token.realTokenFromBackend = user.realTokenFromBackend // ✅
+        token.realTokenFromBackend = user.realTokenFromBackend 
       }
       return token
     },
     session({ session, token }) {
-      session.realTokenFromBackend = token.realTokenFromBackend // ✅
+      session.realTokenFromBackend = token.realTokenFromBackend 
       return session
     },
   },

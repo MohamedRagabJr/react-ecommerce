@@ -5,7 +5,7 @@ import { getMyToken } from "./getMyToken"
 
 export async function getUserData() {
     const token = await getMyToken()
-    const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
+    const {data} = await axios.get(`https://ecommerce.routemisr.com/api/v2/cart`, {
         headers: {
             token: token as string
         }

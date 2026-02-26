@@ -58,7 +58,7 @@ export default function AddToWishlistBtn({ productId }) {
 
   return (
 
-    <Button onClick={toggleWishlist}>
+    <Button onClick={toggleWishlist} className="bg-linear-to-r to-[#2f6a4a] from-[#63a883] rounded-xl">
 
       {isWishlisted
 

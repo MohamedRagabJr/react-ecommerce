@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar/Navbar";
 import MySessionProvider from "../app/_provider/MySessionProvider";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "./_components/Footer/Footer"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
           <Toaster />
           <Navbar />
           {children}
+          <Footer />
         </MySessionProvider>
       </body>
     </html>

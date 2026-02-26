@@ -54,3 +54,25 @@ export interface Brand {
   image: string
 }
 
+export default interface Product {
+  id: string
+  title: string
+  description: string
+  price: number
+  imageCover: string
+  ratingsAverage: number
+  ratingsQuantity: number
+  brand: { name: string }
+}
+
+export interface PageProps {
+  searchParams: {
+    page?: string
+    sort?: string
+    keyword?: string
+    brand?: string
+    "price[gte]"?: string
+    "price[lte]"?: string
+    "category[in]"?: string | string[]
+  }
+}
