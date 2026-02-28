@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react";
+import Link from "next/link"
 
 export function Profile() {
    const handleSignout = () => {
@@ -27,14 +28,12 @@ export function Profile() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
-            Profile
+             <Link href="/account">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Orders
+             <Link href="/allorders">Orders</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-          </DropdownMenuItem>
+          
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
