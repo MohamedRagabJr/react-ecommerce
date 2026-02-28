@@ -4,18 +4,14 @@ import { useState, useContext } from "react";
 import { CartContext } from "../_context/CartContext";
 import { createCashOrder, createVisaOrder } from "./paymentAction";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
 import { Input } from "@/components/ui/input";
-
 import { Button } from "@/components/ui/button";
-
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-
 import { Label } from "@/components/ui/label";
-
 import { toast } from "sonner";
-
+import Breadcrumb from "../_components/Breadcrumb";
 export default function PaymentComponent() {
+  const breadcrumbItems = [{ label: "Home", link: "/" }, { label: "Payment" }];
   const { cartId } = useContext(CartContext)!;
 
   const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -78,51 +74,60 @@ export default function PaymentComponent() {
   }
 
   return (
-    <Card className="max-w-xl mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>Checkout</CardTitle>
-      </CardHeader>
+    <>
+      <Breadcrumb items={breadcrumbItems} />
 
-      <CardContent className="space-y-5">
-        {/* City */}
+      <Card className="max-w-xl mx-auto mt-10">
+        <CardHeader>
+          <CardTitle className="text-green-800 text-2xl text-center">
+            Checkout
+          </CardTitle>
+        </CardHeader>
 
-        <Input placeholder="City" name="city" onChange={handleChange} />
+        <CardContent className="space-y-5">
+          {/* City */}
 
-        {/* Address */}
+          <Input placeholder="City" name="city" onChange={handleChange} />
 
-        <Input placeholder="Address" name="details" onChange={handleChange} />
+          {/* Address */}
 
-        {/* Phone */}
+          <Input placeholder="Address" name="details" onChange={handleChange} />
 
-        <Input placeholder="Phone" name="phone" onChange={handleChange} />
-        {/* Payment Method */}
+          {/* Phone */}
 
-        <div>
-          <Label>Payment Method</Label>
+          <Input placeholder="Phone" name="phone" onChange={handleChange} />
+          {/* Payment Method */}
 
-          <RadioGroup
-            value={paymentMethod}
-            onValueChange={setPaymentMethod}
-            className="flex gap-5 mt-2"
+          <div>
+            <Label>Payment Method</Label>
+
+            <RadioGroup
+              value={paymentMethod}
+              onValueChange={setPaymentMethod}
+              className="flex gap-5 mt-2"
+            >
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="cash" id="cash" />
+
+                <Label htmlFor="cash">Cash</Label>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <RadioGroupItem value="visa" id="visa" />
+
+                <Label htmlFor="visa">Visa</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <Button
+            onClick={handleSubmit}
+            className="w-full bg-linear-to-r to-[#2f6a4a] from-[#63a883]"
           >
-            <div className="flex items-center gap-2">
-              <RadioGroupItem value="cash" id="cash" />
-
-              <Label htmlFor="cash">Cash</Label>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <RadioGroupItem value="visa" id="visa" />
-
-              <Label htmlFor="visa">Visa</Label>
-            </div>
-          </RadioGroup>
-        </div>
-
-        <Button onClick={handleSubmit} className="w-full">
-          {loading ? "Processing..." : "Place Order"}
-        </Button>
-      </CardContent>
-    </Card>
+            {loading ? "Processing..." : "Place Order"}
+          </Button>
+        </CardContent>
+      </Card>
+    </>
   );
 }

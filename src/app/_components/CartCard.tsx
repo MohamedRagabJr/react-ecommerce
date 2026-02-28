@@ -10,26 +10,10 @@ import { CartContext } from "../_context/CartContext";
 import { updateCount } from "../cart/UpdateCount";
 import { toast } from "sonner";
 import { deleteItem, deleteUserItem } from "../cart/DeletProduct";
+import type cartItems from "../types/product.type"
 
 export default function CartCard() {
-  const { cartItems, setCartItems, numOfCartItems, setnumOfCartItems } =
-    useContext(CartContext);
-  type cartItems = {
-    _id: string;
-    product: {
-      title: string;
-      _id: string;
-      imageCover: string;
-      category: {
-        name: string;
-      };
-      brand: {
-        name: string;
-      };
-    };
-    count: number;
-    price: number;
-  };
+  const { cartItems, setCartItems, numOfCartItems, setnumOfCartItems } = useContext(CartContext);
   async function handleUpadateCount(productId: string, count: number) {
     toast.promise(() => updateCount(productId, count), {
       success: function (res) {
@@ -69,6 +53,17 @@ export default function CartCard() {
       richColors: true,
     });
   }
+
+  if (!cartItems || !cartItems?.products?.length) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <p className="text-6xl mb-4">🛒</p>
+        <h2 className="text-2xl font-bold text-green-900 mb-2">Your cart is empty</h2>
+        <p className="text-gray-500">Looks like you have not added anything to your cart yet.</p>
+      </div>
+    )
+  }
+
   return (
     <>
       {cartItems?.products?.map((item: cartItems) => (

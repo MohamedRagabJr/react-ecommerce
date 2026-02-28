@@ -56,6 +56,7 @@ export interface Brand {
 
 export default interface Product {
   id: string
+  _id:string
   title: string
   description: string
   price: number
@@ -76,3 +77,20 @@ export interface PageProps {
     "category[in]"?: string | string[]
   }
 }
+
+export default interface cartItems {
+    _id: string;
+    product: {
+      title: string;
+      _id: string;
+      imageCover: string;
+      category: {
+        name: string;
+      };
+      brand: {
+        name: string;
+      };
+    };
+    count: number;
+    price: number;
+  };

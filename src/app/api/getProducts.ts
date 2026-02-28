@@ -1,4 +1,4 @@
-
+import type Product from "../types/product.type"
 export interface ProductParams {
   page?: string
   limit?: string
@@ -9,58 +9,55 @@ export interface ProductParams {
   "price[lte]"?: string
   "category[in]"?: string | string[]
 }
-
-export interface Product {
-  id: string
-  title: string
-  description: string
-  price: number
-  imageCover: string
-  ratingsAverage: number
-  ratingsQuantity: number
-  brand: { name: string }
-}
-
 export default async function getAllProducts(params: ProductParams = {}): Promise<{
   data: Product[]
   totalPages: number
   currentPage: number
 }> {
-  const parts: string[] = []
+  try {
+    const parts: string[] = []
 
-  const cats = params["category[in]"]
-  const { "category[in]": _cats, ...rest } = params
+    const cats = params["category[in]"]
+    const { "category[in]": _cats, ...rest } = params
 
-  Object.entries(rest).forEach(([key, value]) => {
-    if (value === undefined || value === null || value === "") return
-    parts.push(`${key}=${encodeURIComponent(value as string)}`)
-  })
+    Object.entries(rest).forEach(([key, value]) => {
+      if (value === undefined || value === null || value === "") return
+      parts.push(`${key}=${encodeURIComponent(value as string)}`)
+    })
 
-  if (cats) {
-    const arr = Array.isArray(cats) ? cats : [cats]
-    arr.forEach((c) => { if (c) parts.push(`category[in]=${encodeURIComponent(c)}`) })
-  }
+    if (cats) {
+      const arr = Array.isArray(cats) ? cats : [cats]
+      arr.forEach((c) => { if (c) parts.push(`category[in]=${encodeURIComponent(c)}`) })
+    }
 
-  const limit = Number(params.limit ?? 20)
-  if (!parts.some((p) => p.startsWith("limit="))) {
-    parts.push(`limit=${limit}`)
-  }
+    const limit = Number(params.limit ?? 20)
+    if (!parts.some((p) => p.startsWith("limit="))) {
+      parts.push(`limit=${limit}`)
+    }
 
-  const url = `https://ecommerce.routemisr.com/api/v1/products?${parts.join("&")}`
-  console.log("[getAllProducts] URL:", url)
+    const url = `https://ecommerce.routemisr.com/api/v1/products?${parts.join("&")}`
+    console.log("[getAllProducts] URL:", url)
 
-  const res = await fetch(url, { method: "GET", cache: "no-store" })
-  const json = await res.json()
+    const res = await fetch(url, { method: "GET", cache: "no-store" })
 
-  const totalResults: number = json.results ?? json.data?.length ?? 0
-  const totalPages = Math.ceil(totalResults / limit) || 1
-  const currentPage = json.paginationResult?.currentPage ?? Number(params.page ?? 1)
+    if (!res.ok) {
+      throw new Error(`Failed to fetch products: ${res.status}`)
+    }
 
-  console.log(`[getAllProducts] totalResults: ${totalResults} | limit: ${limit} | totalPages: ${totalPages}`)
+    const json = await res.json()
 
-  return {
-    data: json.data ?? [],
-    totalPages,
-    currentPage,
+    const totalResults: number = json.results ?? json.data?.length ?? 0
+    const totalPages = Math.ceil(totalResults / limit) || 1
+    const currentPage = json.paginationResult?.currentPage ?? Number(params.page ?? 1)
+
+    console.log(`[getAllProducts] totalResults: ${totalResults} | limit: ${limit} | totalPages: ${totalPages}`)
+
+    return {
+      data: json.data ?? [],
+      totalPages,
+      currentPage,
+    }
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : "An unexpected error occurred")
   }
 }

@@ -14,6 +14,7 @@ import { loginData } from "../../types/auth.type";
 import { Card } from "@/components/ui/card";
 import { MyLogin } from "../../api/login";
 import {signIn} from "next-auth/react"
+import Link from "next/link";
 
 export default function Login() {
   const form =  useForm({
@@ -68,6 +69,14 @@ export default function Login() {
               )}
             />
             <Button type="submit" className="mt-5">Login</Button>
+            <p className="text-center my-3">
+              Or
+            </p>
+            <div className="flex items-center justify-between mt-4">
+              <Link className="text-green-800" href="/forgetPassword">Forgot your password?</Link>
+              <Link className="bg-linear-to-r to-[#2f6a4a] from-[#63a883] px-7 text-white py-2.5 rounded-lg" href="/register">Sign Up</Link>
+            </div>
+
           </form>
         </Card>
     </div>
