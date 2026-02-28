@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
         <div className="flex h-16 items-center justify-between">
 
           <Link href="/" className="text-xl logo font-bold flex items-center text-gray-900">
-          <span className="bg-green-900 h-9 w-9 mr-1 text-center main-slider content-center rounded-2xl text-white">R</span>
+          <span className="bg-linear-to-r from-[#2f6a4a] to-[#63a883] h-9 w-9 mr-1 text-center main-slider content-center rounded-2xl text-white">R</span>
             Store
           </Link>
 
