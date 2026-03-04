@@ -20,7 +20,7 @@ export default function Sidebar({ active, setActive }: Props) {
             onClick={() => setActive(item.id)}
             className={`cursor-pointer px-4 py-2 rounded-lg transition ${
               active === item.id
-                ? "bg-green-600 text-white"
+                ? "bg-linear-to-r from-[#2f6a4a] to-[#63a883] text-white"
                 : "hover:bg-gray-100"
             }`}
           >
