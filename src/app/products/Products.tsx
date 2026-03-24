@@ -35,7 +35,7 @@ export default function Products({ products }: { products: Product[] }) {
       <div className="flex flex-wrap py-4">
         {products.map((product: Product) => (
           <div
-            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 2xl:w-1/4 p-2"
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4 2xl:w-1/5 p-2"
             key={product.id}
           >
             <Card className="relative mx-auto w-full max-w-sm pt-0">

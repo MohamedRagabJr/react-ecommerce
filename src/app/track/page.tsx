@@ -35,7 +35,7 @@ export default function TrackPage() {
 
         <button
           onClick={handleTrack}
-          className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+          className="bg-linear-to-r from-[#2f6a4a] to-[#63a883] text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
         >
           Track
         </button>

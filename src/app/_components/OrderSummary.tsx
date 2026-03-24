@@ -21,7 +21,7 @@ export default function OrderSummary() {
           <p className="text-black">  {cartItems?.totalCartPrice ?? 0} EGP</p>
         </div>
         <div className="flex justify-between">
-          <p className="text-gray-400">Number of Item</p>
+          <p className="text-gray-400">Shipping</p>
           <p className="text-black">Free</p>
         </div>
         <div className="flex justify-between font-bold border-t pt-4">

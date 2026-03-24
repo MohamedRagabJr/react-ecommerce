@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Address, AddressInput, getUserAddresses, addAddress } from "../api/addresses";
+import {
+  Address,
+  AddressInput,
+  getUserAddresses,
+  addAddress,
+} from "../api/addresses";
 import Modal from "../account/Modal";
 
 export default function Addresses() {
@@ -48,7 +53,7 @@ export default function Addresses() {
         <h2 className="text-2xl font-semibold">My Addresses</h2>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+          className="bg-linear-to-r from-[#2f6a4a] to-[#63a883] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
         >
           + Add Address
         </button>
@@ -115,7 +120,7 @@ export default function Addresses() {
             </button>
             <button
               onClick={handleAddAddress}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+              className="px-4 py-2 bg-linear-to-r from-[#2f6a4a] to-[#63a883] text-white rounded-lg hover:bg-green-700 transition"
             >
               Save
             </button>
