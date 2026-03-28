@@ -15,7 +15,7 @@ export default function Error({
 
       <button
         onClick={() => reset()}
-        className="bg-green-600 text-white px-4 py-2 rounded"
+        className="bg-linear-to-r from-[#2f6a4a] to-[#63a883] text-white px-4 py-2 rounded"
       >
         Try again
       </button>
