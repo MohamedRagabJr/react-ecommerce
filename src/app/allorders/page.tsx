@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getUserOrders } from "../api/getUserOrders";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
