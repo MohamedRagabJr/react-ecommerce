@@ -7,8 +7,9 @@ export async function addItemToWishlist(productId: string) {
 
   const token = await getMyToken()
 
-  // console.log("TOKEN:", token) 
-
+  if (!token) {
+    throw new Error("You must be logged in to manage your wishlist");
+  }
   try {
     const { data } = await axios.post(
       `https://ecommerce.routemisr.com/api/v1/wishlist`,

@@ -17,19 +17,23 @@ export default function AddToWishlistBtn({ productId }: { productId: string }) {
     try {
       if (isWishlisted) {
         await removeItemFromWishlist(productId);
-        toast.success("Removed");
+        toast.success("Removed from wishlist");
       } else {
         await addItemToWishlist(productId);
-        toast.success("Added");
+        toast.success("Added to wishlist");
       }
       
       // Refresh the full wishlist data
       const updatedData = await getUserWishlist();
-      setWishlistItems(updatedData.data);
-      setnumOfWishlistItems(updatedData.count);
       
-    } catch {
-      toast.error("Error");
+      if (updatedData && Array.isArray(updatedData.data)) {
+        setWishlistItems(updatedData.data);
+        setnumOfWishlistItems(updatedData.count || updatedData.data.length);
+      }
+      
+    } catch (error) {
+      console.error("Wishlist toggle error:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to update wishlist");
     }
   }
 

@@ -3,6 +3,10 @@ import { getMyToken } from "../api/getMyToken";
 export async function removeItemFromWishlist(productId: string) {
   const token = await getMyToken();
 
+  if (!token) {
+    throw new Error("You must be logged in to manage your wishlist");
+  }
+
   try {
     const res = await fetch(
       `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,

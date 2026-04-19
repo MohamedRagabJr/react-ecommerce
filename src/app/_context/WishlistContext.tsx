@@ -5,8 +5,8 @@ import { getUserWishlist } from "../api/getWishlist";
 import type Product from "../types/product.type";
 
 interface WishlistContextType {
-  wishlistItems: Product[] | null;
-  setWishlistItems: React.Dispatch<React.SetStateAction<Product[] | null>>;
+  wishlistItems: Product[];
+  setWishlistItems: React.Dispatch<React.SetStateAction<Product[]>>;
   numOfWishlistItems: number;
   setnumOfWishlistItems: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -27,7 +27,7 @@ export default function WishlistContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [wishlistItems, setWishlistItems] = useState<Product[] | null>(null);
+  const [wishlistItems, setWishlistItems] = useState<Product[]>([]);
 
   const [numOfWishlistItems, setnumOfWishlistItems] = useState(0);
 

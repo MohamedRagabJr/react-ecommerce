@@ -47,7 +47,7 @@ async function handleDeleteItem(productId: string) {
       await removeItemFromWishlist(productId);
 
       // تحديث state مباشرة من الـ state الحالي
-      setWishlistItems((prev: Product[] | null) => prev ? prev.filter(item => item._id !== productId) : null);
+      setWishlistItems((prev: Product[]) => prev.filter(item => item._id !== productId));
 
       setnumOfWishlistItems((prev: number) => prev - 1);
 
