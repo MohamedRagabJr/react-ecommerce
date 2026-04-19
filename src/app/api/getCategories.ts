@@ -1,4 +1,6 @@
-export default async function getCategories() {
+import { Category } from "../types/product.type";
+
+export default async function getCategories(): Promise<Category[]> {
   try {
     const res = await fetch(
       `https://ecommerce.routemisr.com/api/v1/categories`, {method: 'GET', cache: 'no-store'}

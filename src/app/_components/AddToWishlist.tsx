@@ -8,68 +8,43 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useContext } from "react";
 import { WishlistContext } from "../_context/WishlistContext";
 
-export default function AddToWishlistBtn({ productId }) {
+export default function AddToWishlistBtn({ productId }: { productId: string }) {
+  const context = useContext(WishlistContext);
 
-  const {
-    wishlistItems,
-    setWishlistItems
-  } = useContext(WishlistContext);
+  if (!context) {
+    return null;
+  }
 
+  const { wishlistItems, setWishlistItems } = context;
 
-  const isWishlisted = wishlistItems?.some(
-    (item) => item._id === productId
-  );
-
+  const isWishlisted = wishlistItems?.some((item: { _id: string }) => item._id === productId);
 
   async function toggleWishlist() {
-
     try {
-
       if (isWishlisted) {
-
         const data = await removeItemFromWishlist(productId);
 
         setWishlistItems(data.data);
 
         toast.success("Removed");
-
-      }
-
-      else {
-
+      } else {
         const data = await addItemToWishlist(productId);
 
         setWishlistItems(data.data);
 
         toast.success("Added");
-
       }
-
-    }
-
-    catch {
-
+    } catch {
       toast.error("Error");
-
     }
-
   }
 
-
   return (
-
-    <Button onClick={toggleWishlist} className="bg-linear-to-r to-[#2f6a4a] from-[#63a883] rounded-xl">
-
-      {isWishlisted
-
-        ? <FaHeart size={30} />
-
-        : <FaRegHeart size={30} />
-
-      }
-
+    <Button
+      onClick={toggleWishlist}
+      className="bg-linear-to-r to-[#2f6a4a] from-[#63a883] rounded-xl"
+    >
+      {isWishlisted ? <FaHeart size={30} /> : <FaRegHeart size={30} />}
     </Button>
-
   );
-
 }

@@ -5,7 +5,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
-export default function MainSlider({ imglist, slidesPerView, width, height  }) {
+interface MainSliderProps {
+  imglist: string[];
+  slidesPerView: number;
+  width: number;
+  height: number;
+}
+
+export default function MainSlider({ imglist, slidesPerView, width, height }: MainSliderProps) {
   return (
     <>
       <Swiper
