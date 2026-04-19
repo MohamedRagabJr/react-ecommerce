@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState, ReactNode, useContext } from "react";
 import { getUserData } from "../api/getCartData";
 
 interface CartContextType {
@@ -13,6 +13,14 @@ interface CartContextType {
 }
 
 export const CartContext = createContext<CartContextType | null>(null);
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartContextProvider");
+  }
+  return context;
+}
 
 export default function CartContextProvider({
   children,

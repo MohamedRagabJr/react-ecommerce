@@ -5,17 +5,10 @@ import { addItemToWishlist } from "../api/addToWishlist";
 import { removeItemFromWishlist } from "../wishlist/removeWishlist";
 import { toast } from "sonner";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { useContext } from "react";
-import { WishlistContext } from "../_context/WishlistContext";
+import { useWishlist } from "../_context/WishlistContext";
 
 export default function AddToWishlistBtn({ productId }: { productId: string }) {
-  const context = useContext(WishlistContext);
-
-  if (!context) {
-    return null;
-  }
-
-  const { wishlistItems, setWishlistItems } = context;
+  const { wishlistItems, setWishlistItems } = useWishlist();
 
   const isWishlisted = wishlistItems?.some((item: { _id: string }) => item._id === productId);
 

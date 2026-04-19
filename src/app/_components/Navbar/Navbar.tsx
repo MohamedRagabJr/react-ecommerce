@@ -1,19 +1,18 @@
-"use client"
-
-import { useContext, useState } from "react"
+"use client";
+import { useState } from "react"
 import Link from "next/link"
-import { ShoppingCart, Menu, X, Search } from "lucide-react"
+import { ShoppingCart, Menu, X } from "lucide-react"
 import { Profile } from "./Profile";
 import { useSession } from "next-auth/react"
-import { CartContext } from "../../_context/CartContext";
-import { WishlistContext } from "../../_context/WishlistContext";
+import { useCart } from "../../_context/CartContext";
+import { useWishlist } from "../../_context/WishlistContext";
 import { FaRegHeart } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
   const { data: session } = useSession()
-  const { numOfCartItems } = useContext(CartContext)
-  const { numOfWishlistItems } = useContext(WishlistContext);
+  const { numOfCartItems } = useCart()
+  const { numOfWishlistItems } = useWishlist();
   return (
     <nav className="w-full border-b bg-white sticky top-0 z-50">
       <div className="container mx-auto px-4">

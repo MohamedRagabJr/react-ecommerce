@@ -5,15 +5,14 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
-import { useContext } from "react";
-import { CartContext } from "../_context/CartContext";
+import { useCart } from "../_context/CartContext";
 import { updateCount } from "../cart/UpdateCount";
 import { toast } from "sonner";
 import { deleteItem, deleteUserItem } from "../cart/DeletProduct";
-import type cartItems from "../types/product.type"
+import type ICartItem from "../types/product.type"
 
 export default function CartCard() {
-  const { cartItems, setCartItems, numOfCartItems, setnumOfCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems, numOfCartItems, setnumOfCartItems } = useCart();
   async function handleUpadateCount(productId: string, count: number) {
     toast.promise(() => updateCount(productId, count), {
       success: function (res) {
@@ -66,7 +65,7 @@ export default function CartCard() {
 
   return (
     <>
-      {cartItems?.products?.map((item: cartItems) => (
+      {cartItems?.products?.map((item: ICartItem) => (
         <Card className="flex flex-row p-4 mb-5 items-center" key={item._id}>
           <div className="card-img">
             <Image

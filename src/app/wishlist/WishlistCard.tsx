@@ -1,8 +1,7 @@
 "use client";
-
-import { useContext } from "react";
-import { WishlistContext  } from "../_context/WishlistContext";
-import {getUserWishlist} from "../api/getWishlist"
+import { useEffect, useState } from "react";
+import { useWishlist } from "../_context/WishlistContext";
+import { getUserWishlist } from "../api/getWishlist"
 import {
   Card,
   CardDescription,
@@ -19,12 +18,11 @@ import { IoMdClose } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import { removeItemFromWishlist } from "./removeWishlist";
 import { toast } from "sonner";
-import {useEffect ,useState} from "react";
 import type Product from "../types/product.type";
 
 export default function WishlistCard() {
 
-const { wishlistItems, setWishlistItems, setnumOfWishlistItems } = useContext(WishlistContext)!;
+const { wishlistItems, setWishlistItems, setnumOfWishlistItems } = useWishlist();
   console.log(wishlistItems)
   const [isLoading, setIsLoading] = useState(true); 
 useEffect(() => {

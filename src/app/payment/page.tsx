@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useContext } from "react";
-import { CartContext } from "../_context/CartContext";
+import { useState } from "react";
+import { useCart } from "../_context/CartContext";
 import { createCashOrder, createVisaOrder } from "./paymentAction";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import Breadcrumb from "../_components/Breadcrumb";
 export default function PaymentComponent() {
   const breadcrumbItems = [{ label: "Home", link: "/" }, { label: "Payment" }];
-  const { cartId } = useContext(CartContext)!;
+  const { cartId } = useCart();
 
   const [paymentMethod, setPaymentMethod] = useState("cash");
 

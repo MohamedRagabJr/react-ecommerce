@@ -1,12 +1,11 @@
 "use client";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import { useContext } from "react";
-import { CartContext } from "../_context/CartContext";
+import { useCart } from "../_context/CartContext";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function OrderSummary() {
-  const { numOfCartItems, cartItems } = useContext(CartContext);
+  const { numOfCartItems, cartItems } = useCart();
   console.log("Cart Items in OrderSummary:", cartItems);
   return (
     <>

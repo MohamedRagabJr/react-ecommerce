@@ -2,13 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { addItemToCart } from "../api/addToCart";
 import { toast } from "sonner";
-import { CartContext } from "../_context/CartContext";
+import { useCart } from "../_context/CartContext";
 
 export default function AddToCartBtn({ productId }: { productId: string }) {
-  const { setCartItems, setnumOfCartItems } = useContext(CartContext)!;
+  const { setCartItems, setnumOfCartItems } = useCart();
   const [loading, setLoading] = useState(false);
   async function handleAddToCart() {
     try {

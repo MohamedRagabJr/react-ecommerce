@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState, ReactNode, useContext } from "react";
 import { getUserWishlist } from "../api/getWishlist";
 
 interface WishlistContextType {
@@ -12,6 +12,14 @@ interface WishlistContextType {
 
 export const WishlistContext =
   createContext<WishlistContextType | null>(null);
+
+export function useWishlist() {
+  const context = useContext(WishlistContext);
+  if (!context) {
+    throw new Error("useWishlist must be used within a WishlistContextProvider");
+  }
+  return context;
+}
 
 export default function WishlistContextProvider({
   children,
