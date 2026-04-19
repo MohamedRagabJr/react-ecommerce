@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import CategorySlider from "./_components/Slider/CategorySlider";
 import Slider from "./_components/Slider/Slider";
 import Products from "./products/Products";
