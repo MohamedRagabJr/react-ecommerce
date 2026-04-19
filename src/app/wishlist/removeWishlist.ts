@@ -1,3 +1,4 @@
+"use server";
 import { getMyToken } from "../api/getMyToken";
 
 export async function removeItemFromWishlist(productId: string) {
