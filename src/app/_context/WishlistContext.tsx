@@ -52,11 +52,16 @@ export default function WishlistContextProvider({
         const data = await getUserWishlist();
         if (!mounted) return;
 
-        setWishlistItems(data.data);
-
-        setnumOfWishlistItems(data.count);
+        // Safety check: Ensure data.data is an array
+        const items = Array.isArray(data?.data) ? data.data : [];
+        setWishlistItems(items);
+        setnumOfWishlistItems(data?.count || items.length);
+        
       } catch (error) {
-        console.log(error);
+        console.error("Wishlist load error:", error);
+        if (mounted) {
+          setWishlistItems([]);
+        }
       }
     })();
 
