@@ -11,6 +11,24 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import Image from "next/image"
+
+interface OrderItem {
+  _id: string;
+  count: number;
+  price: number;
+  product: {
+    _id: string;
+    title: string;
+    imageCover: string;
+  };
+}
+
+interface Order {
+  _id: string;
+  cartItems: OrderItem[];
+  totalOrderPrice: number;
+}
+
 export default async function OrdersPage({
   searchParams,
 }: {
@@ -40,11 +58,11 @@ export default async function OrdersPage({
       {/* orders */}
 
       <div className="space-y-5 flex gap-5">
-        {currentOrders.map((order: any) => (
+        {currentOrders.map((order: Order) => (
           <div className="w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2 p-2"  key={order._id} >
             <Card className="w-full">
               <div className="flex flex-nowrap ">
-                {order.cartItems.map((item) => (
+                {order.cartItems.map((item: OrderItem) => (
                   <div key={item._id} >
                     <Image
                       height={550}
@@ -61,7 +79,7 @@ export default async function OrdersPage({
                 <CardTitle>Order #{order._id}</CardTitle>
               </CardHeader>
                  <CardContent>
-                  {order.cartItems.map((item) => (
+                  {order.cartItems.map((item: OrderItem) => (
                     <div key={item._id} className="mb-2">
                       <p className="font-medium">{item.product.title}</p>
                       <p className="text-sm text-muted-foreground">
