@@ -1,16 +1,12 @@
-"use server"
-
-import { decode } from "next-auth/jwt"
-import { cookies } from "next/headers"
+import { getServerSession } from "next-auth";
+import { nextAuthConfig } from "../../lib/nextauth.config";
 
 export async function getMyToken() {
   try {
-    const myCookies = await cookies()
-    const TokenFromBackend = myCookies.get("next-auth.session-token")?.value
-
-    const decodedToken = await decode({ token: TokenFromBackend, secret: process.env.AUTH_SECRET! })
-    return decodedToken?.realTokenFromBackend
+    const session = await getServerSession(nextAuthConfig);
+    return session?.realTokenFromBackend;
   } catch (error) {
-    throw new Error(error instanceof Error ? error.message : "Failed to retrieve token")
+    console.error("Token retrieval error:", error);
+    return null;
   }
 }
