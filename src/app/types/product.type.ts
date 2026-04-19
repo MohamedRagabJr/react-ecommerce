@@ -63,7 +63,8 @@ export default interface Product {
   imageCover: string
   ratingsAverage: number
   ratingsQuantity: number
-  brand: { name: string }
+  category: Category
+  brand: Brand
 }
 
 export interface PageProps {
