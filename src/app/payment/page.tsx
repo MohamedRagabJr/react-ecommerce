@@ -35,6 +35,7 @@ export default function PaymentComponent() {
   }
 
   async function handleSubmit() {
+    if (!cartId) return toast.error("Cart not found. Please add items to your cart.");
     if (
       !shippingAddress.city ||
       !shippingAddress.details ||
@@ -48,7 +49,7 @@ export default function PaymentComponent() {
       // CASH
 
       if (paymentMethod === "cash") {
-        const data = await createCashOrder(cartId, shippingAddress);
+        const data = await createCashOrder(cartId!, shippingAddress);
 
         toast.success(data.message || "Order placed");
       }
@@ -56,7 +57,7 @@ export default function PaymentComponent() {
       // VISA
 
       if (paymentMethod === "visa") {
-        const data = await createVisaOrder(cartId, shippingAddress);
+        const data = await createVisaOrder(cartId!, shippingAddress);
 
         if (data?.session?.url) {
           window.location.href = data.session.url;

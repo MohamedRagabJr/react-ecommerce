@@ -14,8 +14,10 @@ import './styles.css';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import Image from 'next/image';
 
+import type { Swiper as SwiperType } from 'swiper';
+
 export default function ProductDetailsSlider() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
     <>
