@@ -1,5 +1,4 @@
 import MainSlider from "./MainSlider";
-import Image from "next/image";
 import sliderImage from "../../../../public/slide1.jpeg";
 import sliderImage2 from "../../../../public/slide2.jpg";
 import sliderImage3 from "../../../../public/slide3.jpg";
