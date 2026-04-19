@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 interface MainSliderProps {
-  imglist: string[];
+  imglist: (string | StaticImageData)[];
   slidesPerView: number;
   width: number;
   height: number;
