@@ -9,7 +9,7 @@ import { useCart } from "../_context/CartContext";
 import { updateCount } from "../cart/UpdateCount";
 import { toast } from "sonner";
 import { deleteItem, deleteUserItem } from "../cart/DeletProduct";
-import type ICartItem from "../types/product.type"
+import { CartItem } from "../types/product.type"
 
 export default function CartCard() {
   const { cartItems, setCartItems, numOfCartItems, setnumOfCartItems } = useCart();
@@ -65,7 +65,7 @@ export default function CartCard() {
 
   return (
     <>
-      {cartItems?.products?.map((item: ICartItem) => (
+      {cartItems?.products?.map((item: CartItem) => (
         <Card className="flex flex-row p-4 mb-5 items-center" key={item._id}>
           <div className="card-img">
             <Image

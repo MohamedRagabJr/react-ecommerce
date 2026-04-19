@@ -8,6 +8,8 @@ import Link from "next/link"
 import Breadcrumb from "../_components/Breadcrumb";
 import getBrands from "../api/getBrands"
 import Image from "next/image"
+import { Brand } from "../types/product.type";
+
 export default async function Brands() {
   let res =  await getBrands()
   const breadcrumbItems = [{ label: "Home", link: "/" }, { label: "Brands" }];
@@ -21,7 +23,7 @@ export default async function Brands() {
           
           <div className="flex flex-wrap py-4">
           
-          {res?.map((brand: any) => (
+          {res?.map((brand: Brand) => (
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2" key={brand._id}>
               <Link href={`/brands/${brand._id}`}>
               <Card className="relative mx-auto w-full max-w-sm pt-0" >

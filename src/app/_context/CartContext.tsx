@@ -2,10 +2,11 @@
 
 import { createContext, useEffect, useState, ReactNode, useContext } from "react";
 import { getUserData } from "../api/getCartData";
+import { CartData } from "../types/product.type";
 
 interface CartContextType {
-  cartItems: any;
-  setCartItems: React.Dispatch<React.SetStateAction<any>>;
+  cartItems: CartData | null;
+  setCartItems: React.Dispatch<React.SetStateAction<CartData | null>>;
   numOfCartItems: number;
   setnumOfCartItems: React.Dispatch<React.SetStateAction<number>>;
   cartId: string | null;
@@ -27,7 +28,7 @@ export default function CartContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [cartItems, setCartItems] = useState<any>(null);
+  const [cartItems, setCartItems] = useState<CartData | null>(null);
   const [numOfCartItems, setnumOfCartItems] = useState(0);
   const [cartId, setcartId] = useState<string | null>(null);
 

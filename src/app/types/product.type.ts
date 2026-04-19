@@ -78,19 +78,25 @@ export interface PageProps {
   }
 }
 
-export default interface cartItems {
+export interface CartItem {
+  _id: string;
+  product: {
+    title: string;
     _id: string;
-    product: {
-      title: string;
-      _id: string;
-      imageCover: string;
-      category: {
-        name: string;
-      };
-      brand: {
-        name: string;
-      };
+    imageCover: string;
+    category: {
+      name: string;
     };
-    count: number;
-    price: number;
+    brand: {
+      name: string;
+    };
   };
+  count: number;
+  price: number;
+};
+
+export interface CartData {
+  products: CartItem[];
+  totalCartPrice: number;
+  _id: string;
+}
