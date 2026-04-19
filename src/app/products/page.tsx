@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Products from "./Products"
 import Breadcrumb from "../_components/Breadcrumb"
 import FilterSidebar from "./Filtersidebar "

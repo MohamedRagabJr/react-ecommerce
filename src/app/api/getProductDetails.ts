@@ -1,4 +1,6 @@
-export default async function getProductDetails(id: string) {
+import type Product from "../types/product.type";
+
+export default async function getProductDetails(id: string): Promise<Product> {
   try {
     const res = await fetch(
       `https://ecommerce.routemisr.com/api/v1/products/${id}`, {method: 'GET', cache: 'no-store'}

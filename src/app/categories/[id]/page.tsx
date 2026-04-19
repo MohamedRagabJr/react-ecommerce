@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import getCategoryDetails from "../../api/getCategoryDetails"
 import { notFound } from "next/navigation"
 import Image from "next/image"
