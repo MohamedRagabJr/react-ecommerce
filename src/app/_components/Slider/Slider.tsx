@@ -7,12 +7,13 @@ export default function Slider() {
   return (
     <>
       <div className="container mx-auto">
-        <div className="w-full main-slider ">
+        <div className="w-full main-slider">
             <MainSlider
               imglist={[sliderImage, sliderImage2, sliderImage3]}
               slidesPerView={1}
               width={1200}
               height={900}
+              className="h-[25vh] lg:h-[80vh] w-full"
             />
           </div>
       </div>

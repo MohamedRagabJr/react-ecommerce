@@ -32,7 +32,7 @@ export default async function Categories() {
                 <Image width={800} height={550}   
                   src={category.image}
                   alt="Event cover"
-                  className="relative h-62.5 w-full object-cover rounded-xl rounded-bl-none rounded-br-none"
+                  className="relative h-[300px] lg:h-62.5 w-full object-cover rounded-xl rounded-bl-none rounded-br-none"
                 />
                 <CardHeader>
                   <CardAction>

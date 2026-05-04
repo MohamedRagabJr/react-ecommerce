@@ -19,12 +19,11 @@ export default async function Home({ searchParams }: PageProps) {
       <Slider />
       <CategorySlider />
       <div className="flex-1 min-w-0">
-            {/* Products — passed as prop, no change to Products.tsx internals */}
-            <Products products={products} />
-
-            {/* Pagination */}
-            <Pagination totalPages={totalPages} />
-          </div>
+          {/* Products — passed as prop, no change to Products.tsx internals */}
+          <Products products={products} />
+          {/* Pagination */}
+          <Pagination totalPages={totalPages} />
+        </div>
     </>
   );
 }

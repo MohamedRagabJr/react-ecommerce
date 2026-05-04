@@ -10,14 +10,21 @@ interface MainSliderProps {
   slidesPerView: number;
   width: number;
   height: number;
+  className?: string;
+  slidesPerViewDesc?: number;
 }
 
-export default function MainSlider({ imglist, slidesPerView, width, height }: MainSliderProps) {
+export default function MainSlider({ imglist, slidesPerView, width, height ,className ,slidesPerViewDesc = 1 }: MainSliderProps) {
   return (
     <>
       <Swiper
         pagination={{ clickable: true }}
         slidesPerView={slidesPerView}
+        breakpoints={{
+          768: {
+            slidesPerView: slidesPerViewDesc,
+          },
+        }}
         spaceBetween={0}
         modules={[Pagination, Autoplay]}
         className="mySwiper"
@@ -28,7 +35,8 @@ export default function MainSlider({ imglist, slidesPerView, width, height }: Ma
               src={src}
               alt="Slide 1"
               width={width}
-              height={height}
+              height={height} 
+              className={className}
             />
           </SwiperSlide>
         ))}

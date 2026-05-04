@@ -61,6 +61,7 @@ export default interface Product {
   description: string
   price: number
   imageCover: string
+  images?: string[]
   ratingsAverage: number
   ratingsQuantity: number
   category: Category

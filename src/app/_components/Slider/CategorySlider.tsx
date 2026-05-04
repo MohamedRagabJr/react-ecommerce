@@ -7,8 +7,8 @@ export default async function CategorySlider() {
     const dataImgs = data.map((category: Category) => category.image);
   return (
     <>
-    <div className="container mx-auto py-8 category-slider">
-        <MainSlider imglist={dataImgs} slidesPerView={7} width={400} height={250} />
+    <div className="container mx-auto my-3">
+        <MainSlider imglist={dataImgs} slidesPerView={2} slidesPerViewDesc={7} width={400} height={250} className="h-[300px] lg:h-[250px]" />
     </div>
       
     </>

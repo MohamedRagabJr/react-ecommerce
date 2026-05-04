@@ -5,6 +5,7 @@ import Image from "next/image";
 import Breadcrumb from "../../_components/Breadcrumb";
 import AddToCartBtn from "../../_components/AddToCartBt";
 import AddToWishlistBtn from "../../_components/AddToWishlist";
+import ProductDetailsSlider from "../../_components/Slider/ProdectDetailsSlider";
 type Props = {
   params: Promise<{
     id: string;
@@ -27,17 +28,11 @@ export default async function ProductPage({ params }: Props) {
     <>
       <Breadcrumb items={breadcrumbItems} />
       <div className="container mx-auto py-4">
-        <div className="flex items-center">
-          <div className="w-1/3">
-            <Image
-              src={data.imageCover}
-              alt={data.title}
-              width={300}
-              height={300}
-              className="object-cover"
-            />
+        <div className="block lg:flex items-center gap-4">
+          <div className="w-full lg:w-1/3 relative">
+            <ProductDetailsSlider images={data.images} title={data.title} />
           </div>
-          <div className="w-2/3">
+          <div className="w-full lg:w-2/3 mt-3 lg:mt-0 p-4 lg:p-0">
             <span className="text-green-900 font-bold">
               {data.category.name}
             </span>

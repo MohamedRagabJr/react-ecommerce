@@ -128,13 +128,6 @@
     @apply bg-background text-foreground;
   }
 }
-.category-slider img{
-  height: 250px
-}
-.main-slider img{
-  height: 80vh;
-  width: 100%
-}
 .swiper-pagination-bullet-active{
   background-color: var(--primary-color) !important;
 }
