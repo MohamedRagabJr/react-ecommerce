@@ -24,7 +24,7 @@ export default function Footer() {
     <footer className="bg-gray-50 text-slate-500 border-t border-slate-200">      
 
       {/* Link columns */}
-      <div className="container mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {Object.entries(links).map(([group, items]) => (
           <div key={group}>
             <h4 className="text-green-900 text-2xl font-bold uppercase tracking-widest mb-3">

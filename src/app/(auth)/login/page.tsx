@@ -28,7 +28,7 @@ export default function Login() {
     <>
       <Breadcrumb items={breadcrumbItems} />
       <div className="container mx-auto mt-10">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="w-full p-7 mx-auto">
             <form onSubmit={form.handleSubmit(handleLogin)}>
               <Controller
@@ -88,7 +88,7 @@ export default function Login() {
               </Button>
             </form>
           </Card>
-          <div className="flex flex-col gap-5 justify-center">
+          <div className="flex flex-col p-7 gap-5 justify-center">
             <h2 className="font-bold text-green-800 text-3xl">Iam new here</h2>
             <p>
               Sign up for early Sale access plus tailored new arrivals, trends
